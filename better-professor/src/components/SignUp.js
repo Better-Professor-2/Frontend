@@ -5,8 +5,8 @@ import { postSignUp } from '../actions/signUpAction'
 const SignUp = props => {
 
     const [signUp, setSignUp] = useState({
-        first_name: "",
-        last_name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: ""
     });
@@ -21,8 +21,8 @@ const SignUp = props => {
         props.postSignUp(signUp);
 
         setSignUp({
-            first_name: "",
-            last_name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: ""
         })
@@ -40,7 +40,7 @@ const SignUp = props => {
                     <input
                         type="text"
                         name="firstName"
-                        value={props.first_name}
+                        value={props.firstName}
                         onChange={handleChanges}
                     />
                 </label>
@@ -50,7 +50,7 @@ const SignUp = props => {
                     <input
                         type="text"
                         name="lastName"
-                        value={props.last_name}
+                        value={props.lastName}
                         onChange={handleChanges}
                     />
                 </label>
@@ -83,8 +83,8 @@ const SignUp = props => {
 const mapStateToProps = state => {
     console.log(state)
     return {
-        firstName: state.signUpReducer.first_name,
-        lastName: state.signUpReducer.last_name,
+        firstName: state.signUpReducer.firstName,
+        lastName: state.signUpReducer.lastName,
         email: state.signUpReducer.email,
         password: state.signUpReducer.password
     }
