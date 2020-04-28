@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { postSignUp } from '../actions/signUpAction'
 
 const SignUp = props => {
 
     const [signUp, setSignUp] = useState({
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         email: "",
         password: ""
     });
@@ -16,6 +18,14 @@ const SignUp = props => {
     const handleSubmit = e => {
         e.preventDefault()
         console.log(signUp)
+        props.postSignUp(signUp);
+
+        setSignUp({
+            first_name: "",
+            last_name: "",
+            email: "",
+            password: ""
+        })
     }
 
     return (
@@ -30,7 +40,7 @@ const SignUp = props => {
                     <input
                         type="text"
                         name="firstName"
-                        value=""
+                        value={props.first_name}
                         onChange={handleChanges}
                     />
                 </label>
@@ -40,7 +50,7 @@ const SignUp = props => {
                     <input
                         type="text"
                         name="lastName"
-                        value=""
+                        value={props.last_name}
                         onChange={handleChanges}
                     />
                 </label>
@@ -50,7 +60,7 @@ const SignUp = props => {
                     <input
                         type="email"
                         name="email"
-                        value=""
+                        value={props.email}
                         onChange={handleChanges}
                     />
                 </label>
@@ -60,7 +70,7 @@ const SignUp = props => {
                     <input
                         type="password"
                         name="password"
-                        value=""
+                        value={props.password}
                         onChange={handleChanges}
                     />
                 </label>
@@ -70,5 +80,17 @@ const SignUp = props => {
         </div>
     )
 }
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+        firstName: state.signUpReducer.first_name,
+        lastName: state.signUpReducer.last_name,
+        email: state.signUpReducer.email,
+        password: state.signUpReducer.password
+    }
+}
 
-export default SignUp;
+export default connect(
+    mapStateToProps,
+    { postSignUp }
+)(SignUp);
