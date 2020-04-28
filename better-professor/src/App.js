@@ -1,11 +1,15 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import './App.css';
+
+import Login from './login';
 import SignUp from './components/SignUp';
 
 
+
+
+
 function App() {
-  return (
     <Router>
       <div className="App">
         <header>
