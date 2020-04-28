@@ -40,7 +40,7 @@ const SignUp = props => {
                     <input
                         type="text"
                         name="firstName"
-                        value={props.firstName}
+                        value={signUp.firstName}
                         onChange={handleChanges}
                     />
                 </label>
@@ -50,7 +50,7 @@ const SignUp = props => {
                     <input
                         type="text"
                         name="lastName"
-                        value={props.lastName}
+                        value={signUp.lastName}
                         onChange={handleChanges}
                     />
                 </label>
@@ -60,7 +60,7 @@ const SignUp = props => {
                     <input
                         type="email"
                         name="email"
-                        value={props.email}
+                        value={signUp.email}
                         onChange={handleChanges}
                     />
                 </label>
@@ -70,7 +70,7 @@ const SignUp = props => {
                     <input
                         type="password"
                         name="password"
-                        value={props.password}
+                        value={signUp.password}
                         onChange={handleChanges}
                     />
                 </label>
