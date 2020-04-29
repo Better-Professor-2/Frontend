@@ -33,7 +33,7 @@ const StudentCards = (props)=>{
          })
     },[students])
 
-    const Card = {
+    const cardStyles = {
         width: '27%',
         boxShadow: '1px 1px 2.5px 2px #ccc',
         margin:'2% 0%',

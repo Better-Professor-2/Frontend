@@ -19,7 +19,7 @@ function App() {
           </nav>
         </header>
         <Switch>
-          <Route exact path='/' component={SignUp} />
+          <Route component={SignUp} />
           <Route path='/login' component={Login}/>
         </Switch>
         
