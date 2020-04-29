@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
-import {  signUpReducer } from './signUpReducer' 
+import { signUpReducer } from './signUpReducer' 
+
 
 export default combineReducers({
-    signUpReducer
+    signUpReducer,
+
+
 });

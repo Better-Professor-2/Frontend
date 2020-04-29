@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
-import Login from './Login';
+import Login from './components/Login';
 import SignUp from './components/SignUp';
-
-
 
 
 
@@ -18,9 +16,9 @@ function App() {
           </nav>
         </header>
         <Switch>
-          <Route component={SignUp} />
+          <Route exact path="/" component={SignUp} />
           <Route path="/login" component={Login}/>
-          <Route component={Login}/>
+          {/* <Route component={Login}/> */}
         </Switch>
       </div>
     </Router>
