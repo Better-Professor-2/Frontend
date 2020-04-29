@@ -4,6 +4,7 @@ import './App.css';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import StudentPage from './components/StudentPage'
+import PrivateRoute from './components/PrivateRoute'
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={SignUp} />
           <Route path="/login" component={Login}/>
-          <Route exact path="/protected" component={StudentPage}/>
+          <PrivateRoute exact path="/protected" component={StudentPage}/>
         </Switch>
         
       </div>
