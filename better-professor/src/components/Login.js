@@ -28,7 +28,7 @@ const Login = props =>{
         .post("https://better-professor-karavil.herokuapp.com/auth/login", login)
         .then(res=> {
             console.log("login post req res", res)
-            localStorage.setItem("token", res.data.payload)
+            localStorage.setItem("token", res.data.token)
             props.history.push("/protected")
         })
         .catch(err => {

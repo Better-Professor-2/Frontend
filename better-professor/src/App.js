@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-
+import StudentPage from './components/StudentPage'
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={SignUp} />
           <Route path="/login" component={Login}/>
-          {/* <Route component={Login}/> */}
+          <Route exact path="/protected" component={StudentPage}/>
         </Switch>
       </div>
     </Router>
