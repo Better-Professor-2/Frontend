@@ -33,11 +33,21 @@ const StudentCards = (props)=>{
          })
     },[students])
 
+    const Card = {
+        width: '27%',
+        boxShadow: '1px 1px 2.5px 2px #ccc',
+        margin:'2% 0%',
+        boxSizing:'border-box',
+        padding: '1.5%',
+        borderRadius:'5%',
+        
+    }
+
     
     return(
         <div style={{display:'flex', flexWrap:'wrap', justifyContent:'space-evenly'}}>{
         thisguy.map(student=>(
-        <Card style={{width:'27%'}}>
+        <Card style={cardStyles}>
             <CardImg top width='100%' src={student}/>
             <CardBody>
                 <CardTitle>
