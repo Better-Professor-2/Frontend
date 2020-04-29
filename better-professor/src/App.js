@@ -20,6 +20,7 @@ function App() {
           <Route path="/login" component={Login}/>
           <Route exact path="/protected" component={StudentPage}/>
         </Switch>
+        
       </div>
     </Router>
   );
