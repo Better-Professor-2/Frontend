@@ -14,14 +14,20 @@ function App() {
         <header>
           <nav>
             <Link to="/login">Login</Link>
+            
+            <Link to="/marketing-page">Marketing Page</Link>
           </nav>
         </header>
         <Switch>
           <Route exact path="/" component={SignUp} />
-          <Route path="/login" component={Login}/>
-          <PrivateRoute exact path="/protected" component={StudentPage}/>
+          <Route path="/login" component={Login} />
+          <PrivateRoute exact path="/protected" component={StudentPage} />
+          <Route path='/marketing-page' component={() => {
+            window.location.href = 'https://nervous-wozniak-8486ab.netlify.app/index.html';
+            return null;
+          }} />
         </Switch>
-        
+
       </div>
     </Router>
   );
