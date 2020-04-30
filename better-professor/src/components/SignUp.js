@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import * as yup from 'yup';
 import { postSignUp } from '../actions/signUpAction'
-import { Signup, SignupForm, Div } from './styledComponents/signupContainer';
+import { Signup, SignupForm, Div, Par } from './styledComponents/signupContainer';
 import bg from './background.png';
 
 
@@ -43,12 +43,12 @@ const SignUp = props => {
     const [formValue, setFormValue] = useState(initFormValue)
     const [formErrors, setFormErrors] = useState(initFormErrors)
     const [isDisabled, setIsDisabled] = useState(true)
-    const [signUp, setSignUp] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
-    });
+    // const [signUp, setSignUp] = useState({
+    //     firstName: "",
+    //     lastName: "",
+    //     email: "",
+    //     password: ""
+    // });
 
     useEffect(()=>{
         formSchema.isValid(formValue)
@@ -101,10 +101,7 @@ const SignUp = props => {
         <h1 style={{textAlign:'center'}}>Welcome to Better Professor</h1>
         <p style={{marginTop:'0px',textAlign:'center'}}>A better way to mentor</p>
         <h3 style={{textAlign:'center'}}>Sign Up</h3>
-        <p style={{ color:'red', marginTop:'0px',textAlign:'center'}}>{formErrors.firstName}</p>
-        <p style={{ color:'red', marginTop:'0px',textAlign:'center'}}>{formErrors.lastName}</p>
-        <p style={{ color:'red', marginTop:'0px',textAlign:'center'}}>{formErrors.email}</p>
-        <p style={{ color:'red', marginTop:'0px',textAlign:'center'}}>{formErrors.password}</p>
+
         <SignupForm onSubmit={handleSubmit}>
             <div>
             <label htmlFor="first-name">
@@ -114,7 +111,7 @@ const SignUp = props => {
                     name="firstName"
                     value={formValue.firstName}
                     onChange={handleChanges}
-                />
+                    />
             </label>
 
             <label htmlFor="Last Name">
@@ -127,7 +124,7 @@ const SignUp = props => {
                     name="lastName"
                     value={formValue.lastName}
                     onChange={handleChanges}
-                />
+                    />
             </label>
             </div>
 
@@ -141,7 +138,7 @@ const SignUp = props => {
                     name="email"
                     value={formValue.email}
                     onChange={handleChanges}
-                />
+                    />
             </label>
 
             <label>
@@ -154,7 +151,7 @@ const SignUp = props => {
                     name="password"
                     value={formValue.password}
                     onChange={handleChanges}
-                />
+                    />
             </label>
 
             <button disabled={isDisabled} onClick={handleSubmit} style={{width:'25%', margin:'5% auto'}}>Sign Up</button>
@@ -164,14 +161,18 @@ const SignUp = props => {
             position:'absolute',
             right:'10%',
             bottom:'-40%',
-
             
-            }}/>
+            
+        }}/>
         </SignupForm>
     </Signup>
+    { formErrors.firstName ? (<Par>{formErrors.firstName}</Par>): null}
+    { formErrors.lastName ? (<Par>{formErrors.lastName}</Par>): null}
+    { formErrors.email ? (<Par>{formErrors.email}</Par>): null}
+    { formErrors.password ? (<Par>{formErrors.password}</Par>): null}
     </Div>
 
-    )
+)
 }
 const mapStateToProps = state => {
     console.log(state)

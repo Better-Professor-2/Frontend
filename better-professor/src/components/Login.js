@@ -1,14 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import axios from 'axios'
-import { Signup, SignupForm, Div } from './styledComponents/signupContainer';
+import * as yup from 'yup';
+import { Signup, SignupForm, Div, Par } from './styledComponents/signupContainer';
 import bg from './background.png';
 // import Cards from './StudentCards'
 // import { connect } from 'react-redux'
 // import { postLogin } from '../actions/loginActions'
 
+const initFormValue = {
+    email:'',
+    password:'',
+
+
+}
+const initFormErrors = {
+    email:null,
+    password:null,
+
+}
+const formSchema = yup.object().shape({
+    email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email field is required'),
+    password: yup
+    .string()
+    .required('Password field is required')
+})
 
 const Login = props =>{
+    const [formValue, setFormValue] = useState(initFormValue)
+    const [formErrors, setFormErrors] = useState(initFormErrors)
+    const [isDisabled, setIsDisabled] = useState(true)
+    const [postErr, setPostErr] = useState(null)
+
+
+
+    useEffect(()=>{
+        formSchema.isValid(formValue)
+         .then(valid=>{
+             setIsDisabled(!valid)
+         })
+    },[formValue])
     
     const emailPlacehlder = 'Email'
     const pwPlacehlder = 'Password'
@@ -20,14 +54,34 @@ const Login = props =>{
     })
 
     const handleChanges = e => {
-        setLogin({...login, [e.target.name]: e.target.value})
+        const name = e.target.name;
+        const value = e.target.value;
+
+        yup.reach(formSchema, name).validate(value)
+        .then(valid=>{
+            setFormErrors({
+                ...formErrors,
+                [name]:''
+            })
+        })
+        .catch(err=>{
+            setFormErrors({
+                ...formErrors,
+                [name]:err.errors[0]
+            })
+        })
+
+        setFormValue({
+            ...formValue, 
+            [name]:value 
+        });
     }
 
     const handleSubmit = e => {
         e.preventDefault()
         console.log("handle submit here")
         axios
-        .post("https://better-professor-karavil.herokuapp.com/auth/login", login)
+        .post("https://better-professor-karavil.herokuapp.com/auth/login", formValue)
         .then(res=> {
             console.log("login post req res", res)
             localStorage.setItem("token", res.data.token)
@@ -35,9 +89,10 @@ const Login = props =>{
         })
         .catch(err => {
             console.log("there was an error logging in ", err.response.data )
+            setPostErr(`Invalid email or password; Try Again.`)
         })
     }
-    console.log(login)
+    console.log(formValue)
     return(
     <Div style={{backgroundImage:`url(${bg})`}}>
         <Signup>
@@ -47,14 +102,10 @@ const Login = props =>{
             <label> Email:<span style={{color:'red'}}>*</span> &nbsp;
                 <input
                     name='email'
-                    ref={register({required: 'Email field is required', pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                    }})}
-                    placeholder={emailPlacehlder}
-                    // react 2
+                    //react 2
                     type="email"
                     onChange={handleChanges}
-                    value={login.email}
+                    value={formValue.email}
                     />
                     
                 
@@ -63,22 +114,23 @@ const Login = props =>{
             <label> Password:<span style={{color:'red'}}>*</span> &nbsp;
                 <input
                     name='password'
-                    ref={register({
-                        required:'Password field is required'})}
-                    placeholder={pwPlacehlder}
                     //react 2
                     type="password"
                     onChange={handleChanges}
-                    value={login.password}
+                    value={formValue.password}
                     />
                 
             </label>&nbsp;
-            <input type='submit' />
-            {errors.email && <p>Email or Password is invalid</p>}
+            <button style={{fontSize:'110%', width:'10rem', margin:'2% auto', borderRadius:'5px', textAlign:'center'}} disabled={isDisabled} onSubmit={handleSubmit} type='submit'>Login</button>
+            {/* {errors.email && <p>Email or Password is invalid</p>} */}
+
 
 
         </SignupForm>
         </Signup>
+            { formErrors.email ? (<Par>{formErrors.email}</Par>): null}
+            { formErrors.password ? (<Par>{formErrors.password}</Par>): null}
+            { postErr ? (<Par>{postErr}</Par>): null}
     </Div>
     )
 
