@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const Signup = styled.div`
-    width:45%;
-    border:1px solid black;
-    display:flex;
-    flex-direction:column;
-    text-align:left;
-    padding:2%;
+    /* width:45%; */
+    /* border:1px solid black; */
+    /* display:flex; */
+    /* flex-direction:column; */
+    /* text-align:left; */
+    /* padding:2%; */
     /* height:35vh; */
-    margin:0 auto;
-    border-radius:6%;
-    box-shadow: 2px 2px 5px 4px #000;
+    /* margin:0 auto; */
+    /* border-radius:6%; */
+    /* box-shadow: 2px 2px 5px 4px #000; */
     /* margin-top:10%; */
 
     background-color:white;
@@ -26,7 +26,7 @@ export const SignupForm = styled.form`
     }
 `;
 export const Div = styled.div`
-    height:94vh;
+    height:84vh;
     padding-top:8%
     
 `;

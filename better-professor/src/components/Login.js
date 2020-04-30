@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import axios from 'axios'
+import { Signup, SignupForm, Div } from './styledComponents/signupContainer';
+import bg from './background.png';
 // import Cards from './StudentCards'
 // import { connect } from 'react-redux'
 // import { postLogin } from '../actions/loginActions'
@@ -37,10 +39,11 @@ const Login = props =>{
     }
     console.log(login)
     return(
-    <div>
+    <Div style={{backgroundImage:`url(${bg})`}}>
+        <Signup>
         <h1>Better Professor</h1>
         <h2>Login</h2>
-        <form style={{display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
+        <SignupForm style={{display:'flex', flexDirection:'column'}} onSubmit={handleSubmit}>
             <label> Email:<span style={{color:'red'}}>*</span> &nbsp;
                 <input
                     name='email'
@@ -74,9 +77,9 @@ const Login = props =>{
             {errors.email && <p>Email or Password is invalid</p>}
 
 
-        </form>
-            
-    </div>
+        </SignupForm>
+        </Signup>
+    </Div>
     )
 
 }
