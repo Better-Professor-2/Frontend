@@ -24,7 +24,7 @@ const AddDeadline = ({ studentId, setEditId, addDeadlines}) => {
             addDeadlines(studentId, res.data)
         })
         .catch(err => {
-            console.log("couldn't add deadline", err)
+            console.log("couldn't add deadline", err.response.data)
         })
     }
     console.log(newDeadline)
