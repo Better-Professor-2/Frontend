@@ -101,7 +101,7 @@ const EditStudent = ({ setStudentList, studentId }) => {
                 </label>
                 <button>Submit</button>
             </form>
-        </div> 
+        </div> : 'Click edit to edit a student'
     )
 
 
